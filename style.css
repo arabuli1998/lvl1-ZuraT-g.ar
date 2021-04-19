@@ -1,0 +1,64 @@
+*{
+    
+    border: 0.01px solid rgb(204, 139, 0);
+   min-width: 100px;
+   
+    text-align: center;
+    
+   
+}
+tr{
+    display: flex;
+    border: none;
+    height: 40px;
+    width: 70%;
+
+}
+body{
+    border: none;
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: space-around;
+    align-items: center;
+}
+#conteiner{
+    border: none;
+    flex:1 1 400px;
+}
+#conteiner thead{
+    border: none;
+}
+th{
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+    width: 100%;
+    border: 1px solid black;
+}
+input{
+    border-radius: 5px;
+    width: 170px;
+    height: 20px;
+    border: 1px solid rgb(221, 0, 0);
+    margin: auto;
+  
+}
+label{
+    border: none;
+}
+.inp{
+    flex:2 1 200px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    
+    align-items: center;
+    justify-content: center;
+}
+button{
+    margin: 20px;
+    color: cadetblue;
+}
+
+
+
