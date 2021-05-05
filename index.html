@@ -4,46 +4,126 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+      <title>Music For You</title>
 </head>
 <body>
- 
+    
+    <div class="logo"> 
+    <i class="fab fa-accusoft"><p>MusicTone</p></i>
+  <h1>Search any music</h1>
+</div>
+
+  <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>Favourite</li>
+      <li>Contact us</li>
+      <li>About Us</li>
+  </ul>
+
+  <div class="dir">
+
+  <input type="text" name="" id="music"
+  placeholder="Write here,what are you searching...">
+  <button class="btn" id="btn">SEARCH</button>
+</div>
+
+<div id="sia">
+
+</div>
   
-  <table id="conteiner">
-    <thead>
-      <tr id="tr">
+  <script>
+
+    let search = document.getElementById('music');
+let shedegi = document.getElementById('sia');
+let btn = document.getElementById('btn');
+
+let tmp = '';
+
+function ipove(sadziebo) {
+    let link = `https://itunes.apple.com/search?term=${sadziebo}`;
+    fetch(link)
+    .then(response => response.json())
+    .then((data) => {
+       data.results.map((element) => {
+        shedegi.innerHTML = '';
+        tmp = `<div class='class'>
+                    
+                   
+            <h3><a href=${element.artistViewUrl} target='_blank' >${element.artistName}</a></h3>
+                    
+                    
+            <img class="surati" src="${element.artworkUrl100}">
+
+                    
+            <audio controls>
+                         <source src="${element.previewUrl}">
+            </audio>
+                     
+              </div>`;
+              
+        shedegi.innerHTML += tmp;
         
-      </tr>
-    </thead>
-    <tbody>
 
-    </tbody>
-  </table>
-  <div class="inp" id="inp">
-    <label for="saxe">saxeli</label>
-    <input type="text"  name="saxe">
+    });
+        btn.addEventListener('click', machvene)
+        
+       function machvene() {
+            tmp = `<div class="satauri">
+                      <h3>best results</h3>
+                      <i class="fas fa-angle-down"></i>
+                    </div>`;
+         data.results.map((track) => {
+            
+          tmp += `
+            <div class='sul'>
 
-    <label for="gvar">gvari</label>
-    <input type="text"  name="gvar">
+            <p class='pirveli'><a href=${track.artistViewUrl} target='_blank'>${track.trackName} </p>
 
-    <label for="math">math </label>
-    <input type="text" name="math">
+             
 
+            <img src="${track.artworkUrl100}"></a>
+
+            
+              <a href=${track.artistViewUrl} target='_blank' >${track.artistName}</a>
+           
+
+            
+                <audio controls>
+                     <source src="${track.previewUrl}">
+                 </audio>
+            
+
+            </div>`
+        })
+
+        shedegi.textContent = '';
+        shedegi.innerHTML = `<table class='table'>` + tmp + `</table>` ;
+        }
+
+    })
     
-    <label for="kart">kartuli</label>
-    <input type="text"  name="kart">
+};
+
+
+let searchTime = 0;
+
+window.onload = () => {
+    search.addEventListener('keydown', () => {
+
+        if(search.value.trim().length === 0) {
+            return;
+        }
+        clearInterval(searchTime);
+        searchTime = setTimeout(() => {
+            ipove(search.value)
+        }, 300)
+    })
+}
     
-
-    <label for="fiz">fizika </label>
-    <input type="text"  name="fiz">
-
-    <label for="ist">istoria</label>
-    <input type="text"  name="ist">
-    <button  type="submit">add</button>
-  </div>
-  <script src="javascript.js"></script>
-  
-  
+  </script>
 </body>
 </html>
